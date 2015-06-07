@@ -113,7 +113,7 @@
 
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Canonical Protocol </h2>
 						<p style="font-size:24px;">
 							Dado que serviços podem aplicar diferentes tecnologias de comunicação e assim aumentar a complexidade de integração entre sistemas diferentes, o padrão Canonical Protocol sugere a aplicação de uma unica tecnologia para a comunicação.
@@ -130,7 +130,7 @@
 						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Canonical Schema </h2>
 						<p style="font-size:24px;">
 							Diferentes serviços com modelos semelhantes acabam impondo um esforço de transformação nos dados. Para resolver este ponto este padrão sugere o uso de schemas entre serviços chamados de contratos.
@@ -147,15 +147,15 @@
 						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Domain Inventory </h2>
 						<p style="font-size:24px;">
-							Centralizar o inventorio de serviços pode trazer alta complexidade e muito esforço de todos os envolvidos em manter tudo organizado.
+							Um conjunto grande de serviços organizados sem determinar seus domínios pode trazer alta complexidade e muito esforço de todos os envolvidos em manter e evoluir.
 							Pessoas com papéis diferentes podem acabar demandando constante alinhamento com o time por causa disso.
-							Para resolver este problema este pattern sugere a descentralização dos repositorios de serviços organizados por domínios.
+							Para resolver este problema este pattern sugere a separação dos serviços através do uso de domínios para identificar agrupamentos.
 						</p>
 						<p style="font-size:24px;">
-							Exemplo: Na pratica podemos criar repositorios de serviço por dominio, por exemplo, contabilidade, RH, PCP, vendas e etc.. Cada um gerenciado
+							Exemplo: Na pratica podemos organizar repositorios de serviço por dominio, por exemplo, contabilidade, RH, PCP, vendas e etc.. Cada um gerenciado
 							de forma independente.
 						</p>
 						<p style="font-size:24px;">
@@ -167,20 +167,81 @@
 						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Enterprise Inventory </h2>
+						<p style="font-size:24px;">
+							Organizar o inventório de serviços em locais diferentes pode trazer desorganização além de possibilitar a criação de serviços iguais
+							em repositórios diferentes por que não é possivel visualizar o todo. Este pattern visa a organização de todos os serviços em um repositório enterprize
+							assim todos os envolvidos na organização tem um ponto central de decisão, lembrando que seguindo o pattern "Domain Inventory" os serviços em um ponto central
+							são organizados através de domínios.
+						</p>
+						<p style="font-size:24px;">
+							Exemplo: Softwares de governança podem realizar a organização dos serviços de forma objetiva.
+						</p>
+						<p style="font-size:24px;">
+							Links: <br />
+							<ul style="font-size:24px;">
+								<li><a href="http://soapatterns.org/design_patterns/enterprise_inventory">soapatterns.org</a></li>
+								<li><a href="http://en.wikipedia.org/wiki/Enterprise_inventory_pattern">wikipedia</a></li>
+							</ul>
+						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Logic Centralization </h2>
+						<p style="font-size:24px;">
+							Times diferentes criando serviços podem ocasionalmente gerar funcionalidades iguais, por exemplo, um serviço de compra de produto pode verificar
+							o estoque, outro serviço de compras também pode verificar o estoque, se ambos os serviços implementarem a consulta ao estoque teremos redundancia. Este pattern
+							sugere a centralização de lógicas, o controle de estoque pode virar um serviço assim pode ser reusado por outros.
+						</p>
+						<p style="font-size:24px;">
+							Exemplo: Este item também é conhecido como Entity Services, uma entidade de domínio pode ter suas funcionalidades expostas assim sendo, ela fica centralizada e disponivel para outros serviços.
+						</p>
+						<p style="font-size:24px;">
+							Links: <br />
+							<ul style="font-size:24px;">
+								<li><a href="http://soapatterns.org/design_patterns/logic_centralization">soapatterns.org</a></li>
+								<li><a href="http://en.wikipedia.org/wiki/Logic_centralization_pattern">wikipedia</a></li>
+							</ul>
+						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Service Layers </h2>
+						<p style="font-size:24px;">
+							Multiplos serviços desenvolvidos por times diferentes podem gerar inconsistencias e funcionalidades redundantes, este pattern visa separar em camadas logicas
+							determinando objetivos para cada uma delas. Usando o padrão "Logic Centralization" para determinar os objetivos de serviços para entidades de dominios, criamos uma camada Task Service que pode
+							fazer uso de uma ou mais entity services.
+						</p>
+						<p style="font-size:24px;">
+							Exemplo: SERASA pode expor um serviço de "consulta" que recebe um CPF, internamente este serviço chama outros serviços "composição" que juntos vão elaborar a resposta. Não é necessário
+							neste caso expor os outros serviços.
+						</p>
+						<p style="font-size:24px;">
+							Links: <br />
+							<ul style="font-size:24px;">
+								<li><a href="http://soapatterns.org/design_patterns/service_layers">soapatterns.org</a></li>
+								<li><a href="http://en.wikipedia.org/wiki/Service_layers_pattern">wikipedia</a></li>
+							</ul>
+						</p>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Service Normalization </h2>
+						<p style="font-size:24px;">
+							Serviços em um mesmo repositorio devem ser normalizados, isto significa, evitar serviços redundantes e todos os serviços precisam ter objetivos
+							claros.
+						</p>
+						<p style="font-size:24px;">
+							Exemplo: Dentro do domínio RH temos que ter claro quais serão os serviços, "contratar", "fecharSalarioMês" e assim por diante.
+						</p>
+						<p style="font-size:24px;">
+							Links: <br />
+							<ul style="font-size:24px;">
+								<li><a href="http://soapatterns.org/design_patterns/service_normalization">soapatterns.org</a></li>
+								<li><a href="http://en.wikipedia.org/wiki/Service_Normalization_Pattern">wikipedia</a></li>
+							</ul>
+						</p>
 					</section>
 
 				</section>
@@ -199,15 +260,15 @@
 
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Entity Abstraction </h2>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Process Abstraction </h2>
 					</section>
 
-					<section data-background="#FFFFFF" data-background-transition="zoom">
+					<section data-background-transition="zoom">
 						<h2>Utility Abstraction </h2>
 					</section>
 
